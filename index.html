@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kaixin Li · Embodied AI</title>
+<meta name="description" content="Kaixin Li — Embodied AI algorithm researcher working on Vision-Language-Action models, contact-rich manipulation, reinforcement learning and real-to-sim robotics.">
+<link rel="icon" href="assets/figures/avatar.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF; --card:#F8FAFC; --ink:#0F172A; --ink2:#334155; --muted:#64748B;
+  --accent:#2563EB; --accent-d:#1E40AF; --accent-l:#EFF6FF; --line:#E2E8F0;
+  --green:#047857; --green-l:#ECFDF5; --amber:#B45309; --amber-l:#FFFBEB;
+  --radius:14px; --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink2);font:16px/1.65 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{color:var(--ink);line-height:1.25;margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono)}
+sub{font-size:.7em}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.78);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:24px;height:60px}
+.brand{font-weight:800;color:var(--ink);letter-spacing:-.01em;white-space:nowrap}
+.brand:hover{text-decoration:none}
+.navlinks{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-left:auto}
+.navlinks::-webkit-scrollbar{display:none}
+.navlinks a{color:var(--ink2);font-size:14px;font-weight:500;padding:6px 11px;border-radius:8px;white-space:nowrap}
+.navlinks a:hover,.navlinks a.on{background:var(--accent-l);color:var(--accent-d);text-decoration:none}
+
+/* hero */
+.hero{padding:64px 0 40px}
+.hero-grid{display:grid;grid-template-columns:1fr 200px;gap:48px;align-items:start}
+.eyebrow{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--accent);letter-spacing:.04em;text-transform:uppercase}
+.hero h1{font-size:46px;font-weight:800;letter-spacing:-.025em;margin:10px 0 6px}
+.hero h1 .cn{font-weight:500;color:var(--muted);font-size:.55em;letter-spacing:0;margin-left:6px}
+.role{font-size:19px;font-weight:600;color:var(--ink);margin-bottom:18px}
+.lead{font-size:16.5px;max-width:680px;margin:0 0 18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;padding:0;list-style:none}
+.chips li{font-size:13px;font-weight:500;color:var(--accent-d);background:var(--accent-l);border:1px solid #DBEAFE;padding:4px 11px;border-radius:999px}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;padding:9px 16px;border-radius:10px;border:1px solid var(--line);color:var(--ink);background:#fff;transition:.15s}
+.btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.btn.primary{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn.primary:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn svg{width:16px;height:16px}
+.avatar{width:200px;aspect-ratio:266/373;object-fit:cover;border-radius:18px;border:1px solid var(--line);box-shadow:0 12px 32px -12px rgba(15,23,42,.25)}
+.facts{margin-top:14px;font-size:13px;color:var(--muted);line-height:1.6}
+.facts b{color:var(--ink);font-weight:600}
+
+/* metrics */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
+.metric{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px 16px;position:relative;overflow:hidden}
+.metric::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--accent)}
+.metric .v{font-family:var(--mono);font-size:27px;font-weight:700;color:var(--ink);letter-spacing:-.02em}
+.metric .k{font-size:13.5px;font-weight:600;color:var(--ink);margin:2px 0 4px}
+.metric .d{font-size:12.5px;color:var(--muted);line-height:1.5}
+
+/* sections */
+section.block{padding:72px 0;border-top:1px solid var(--line)}
+section.alt{background:var(--card)}
+.sec-head{margin-bottom:28px}
+.sec-tag{display:inline-flex;gap:8px;align-items:center;font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.05em}
+.sec-tag .venue{background:var(--ink);color:#fff;padding:2px 8px;border-radius:6px;letter-spacing:.02em}
+.sec-head h2{font-size:32px;font-weight:800;letter-spacing:-.02em;margin:10px 0 8px}
+.sec-head .sub{font-size:17px;color:var(--ink2);max-width:860px;margin:0}
+.tagline{font-style:italic;color:var(--accent-d);font-weight:600}
+h3.sh{font-size:20px;font-weight:700;margin:44px 0 14px;position:relative;padding-left:14px}
+h3.sh::before{content:"";position:absolute;left:0;top:3px;width:4px;height:20px;background:var(--accent);border-radius:2px}
+p.note{font-size:15px;margin:0 0 16px;max-width:900px}
+
+/* cards */
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+section.alt .card{background:#fff}
+.card h4{font-size:16px;font-weight:700;margin-bottom:8px}
+.card p{font-size:14.5px;margin:0}
+.card .num{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--accent);margin-bottom:8px;display:block}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.badge{font-family:var(--mono);font-size:12px;font-weight:600;padding:3px 8px;border-radius:6px;background:var(--accent-l);color:var(--accent-d)}
+.badge.g{background:var(--green-l);color:var(--green)}
+.badge.a{background:var(--amber-l);color:var(--amber)}
+
+/* figures */
+figure{margin:0}
+.fig{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px;cursor:zoom-in;transition:.15s}
+.fig:hover{border-color:#93C5FD;box-shadow:0 8px 24px -14px rgba(37,99,235,.45)}
+.fig img{width:100%;height:auto;border-radius:6px}
+figcaption{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.5}
+figcaption b{color:var(--ink);font-weight:600}
+
+/* video */
+.vid{position:relative;border-radius:12px;overflow:hidden;background:#0B1220;cursor:zoom-in;border:1px solid var(--line)}
+.vid video{width:100%;height:100%;display:block;object-fit:cover}
+.vid.contain video{object-fit:contain}
+.vid .tag{position:absolute;top:10px;right:10px;font-family:var(--mono);font-size:11.5px;font-weight:700;color:#fff;background:rgba(15,23,42,.72);backdrop-filter:blur(6px);padding:3px 8px;border-radius:6px;pointer-events:none}
+.vid .tag.ok{background:rgba(4,120,87,.88)}
+.vid .expand{position:absolute;bottom:10px;right:10px;width:30px;height:30px;border-radius:8px;background:rgba(15,23,42,.6);display:grid;place-items:center;opacity:0;transition:.15s;pointer-events:none}
+.vid:hover .expand{opacity:1}
+.vid .expand svg{width:15px;height:15px;stroke:#fff}
+.r169{aspect-ratio:16/9}.r916{aspect-ratio:9/16}.rpair{aspect-ratio:1288/574}.rsim{aspect-ratio:960/648}
+.supp{margin-top:16px;border-radius:var(--radius);overflow:hidden;background:#000;border:1px solid var(--line);aspect-ratio:16/9}
+.supp video{width:100%;height:100%;display:block}
+.vcap{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.5}
+.vcap b{color:var(--ink);font-weight:600}
+
+/* table */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:#fff}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:620px}
+th,td{padding:10px 14px;text-align:center;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left;white-space:normal}
+thead th{background:var(--card);color:var(--ink);font-weight:700;font-size:13px}
+tbody tr:last-child td{border-bottom:0}
+td.mono,td .mono{font-family:var(--mono);font-size:13px}
+.ours{color:var(--accent-d);font-weight:700;background:var(--accent-l)}
+.tbl-cap{font-size:13px;color:var(--muted);margin:8px 2px 0}
+.up{color:var(--green);font-size:11.5px;font-weight:700;margin-left:4px}
+
+/* tabs */
+.tabs{display:inline-flex;gap:4px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:4px;margin-bottom:18px;flex-wrap:wrap}
+.tabs button{font:600 14px Inter,sans-serif;color:var(--ink2);background:none;border:0;border-radius:9px;padding:8px 14px;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff}
+.panel[hidden]{display:none}
+
+/* project 3 layout */
+.p3-hero{display:grid;grid-template-columns:300px 1fr;gap:20px;align-items:start}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;margin:10px 0 0}
+.flow span{background:#fff;border:1px solid var(--line);padding:3px 9px;border-radius:7px;color:var(--ink)}
+.flow i{color:var(--muted);font-style:normal}
+
+/* timeline */
+.tl{position:relative;padding-left:22px}
+.tl::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.tl-item{position:relative;padding-bottom:22px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-22px;top:6px;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid var(--accent)}
+.tl-item.past::before{border-color:#94A3B8}
+.tl-time{font-family:var(--mono);font-size:12.5px;color:var(--muted);font-weight:600}
+.tl-item h4{font-size:16px;margin:2px 0}
+.tl-item .r{font-size:14px;color:var(--accent-d);font-weight:600}
+.tl-item p{font-size:14px;margin:4px 0 0}
+
+.pubs{list-style:none;margin:0;padding:0}
+.pubs li{padding:14px 0;border-bottom:1px solid var(--line)}
+.pubs li:first-child{padding-top:0}
+.pubs li:last-child{border-bottom:0}
+.pubs .venue{display:inline-block;font-family:var(--mono);font-size:11.5px;font-weight:700;padding:2px 7px;border-radius:5px;background:var(--ink);color:#fff;margin-right:6px}
+.pubs .st{font-size:12px;font-weight:600;color:var(--amber)}
+.pubs .st.pub{color:var(--green)}
+.pubs .t{font-weight:600;color:var(--ink);font-size:15px;display:block;margin-top:5px}
+.pubs .m{font-size:13.5px;color:var(--muted)}
+.stack h4{font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:var(--accent);font-family:var(--mono);margin-bottom:10px}
+.stack .chips{margin:0}
+.stack .chips li{background:var(--card);border-color:var(--line);color:var(--ink)}
+
+footer{border-top:1px solid var(--line);padding:30px 0 40px;font-size:13px;color:var(--muted);text-align:center}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(2,6,23,.92);display:none;align-items:center;justify-content:center;padding:56px 24px 24px;flex-direction:column}
+.lb.open{display:flex}
+.lb-body{max-width:min(1400px,100%);max-height:calc(100vh - 140px);display:flex;align-items:center;justify-content:center}
+.lb-body img,.lb-body video{max-width:100%;max-height:calc(100vh - 140px);border-radius:8px;background:#000}
+.lb-body img{background:#fff}
+.lb-cap{color:#CBD5E1;font-size:14px;margin-top:14px;max-width:900px;text-align:center}
+.lb-close{position:absolute;top:14px;right:18px;width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:22px;cursor:pointer;line-height:1}
+.lb-close:hover{background:rgba(255,255,255,.18)}
+
+@media (max-width:960px){
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .g4{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:1fr}
+  .p3-hero{grid-template-columns:1fr}
+  .p3-hero .r916{max-width:320px;margin:0 auto}
+}
+@media (max-width:720px){
+  .wrap{padding:0 16px}
+  .hero{padding:36px 0 24px}
+  .hero-grid{grid-template-columns:1fr;gap:24px}
+  .hero-grid aside{order:-1;display:flex;gap:16px;align-items:center}
+  .avatar{width:96px;border-radius:14px}
+  .facts{margin-top:0}
+  .hero h1{font-size:34px}
+  .g2{grid-template-columns:1fr}
+  .sec-head h2{font-size:26px}
+  section.block{padding:52px 0}
+  .brand{display:none}
+  .navlinks{margin-left:0}
+}
+@media (max-width:440px){
+  .metrics,.g4{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">Kaixin Li</a>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#imrl">IMRL-VLA</a>
+      <a href="#eag">EAG-VLA</a>
+      <a href="#agent">Embodied Agent</a>
+      <a href="#sim">Real-to-Sim</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="wrap" id="about">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Embodied AI · Robot Learning</div>
+        <h1>Kaixin Li</h1>
+        <div class="role">Embodied AI Algorithm Researcher · Autel Robotics</div>
+        <p class="lead">I received my M.Eng. in Electronic Information from <b>Fudan University</b> (2024), where I worked on embodied intelligence, reinforcement learning and convex optimization, and my B.Eng. in Communication Engineering from <b>Sun Yat-sen University</b> (2021).</p>
+        <p class="lead">My research interests lie in <b>robot learning for physical interaction</b>, in particular <b>Vision-Language-Action (VLA) models</b>, <b>reinforcement learning</b> for contact-rich manipulation, <b>visuo-tactile and force</b> perception, and <b>embodied agents</b> that bring these policies to long-horizon real-world tasks.</p>
+        <ul class="chips">
+          <li>VLA Models</li><li>Contact-Rich Manipulation</li><li>Reinforcement Learning</li>
+          <li>Visuo-Tactile &amp; Force Fusion</li><li>Embodied Agents (System 1/2)</li><li>Real-to-Sim (3DGS · Isaac Sim)</li>
+        </ul>
+        <div class="btns">
+          <a class="btn primary" href="mailto:1615061642@qq.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email</a>
+          <a class="btn" data-link="github" href="#" hidden>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>GitHub</a>
+          <a class="btn" data-link="scholar" href="#" hidden>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3Zm-6.8 9.6V16c0 1.66 3.04 4 6.8 4s6.8-2.34 6.8-4v-3.4L12 16.3l-6.8-3.7Z"/></svg>Google Scholar</a>
+        </div>
+      </div>
+      <aside>
+        <img class="avatar" src="assets/figures/avatar.jpg" alt="Portrait of Kaixin Li">
+      </aside>
+    </div>
+
+  </div>
+</header>
+
+<!-- ================= EXPERIENCE ================= -->
+<section class="block alt" id="experience">
+  <div class="wrap">
+    <div class="sec-head"><div class="sec-tag">Background</div><h2>Experience &amp; Education</h2></div>
+    <div class="grid g2" style="gap:24px;align-items:start">
+      <div class="card">
+        <h4 style="margin-bottom:16px">Experience</h4>
+        <div class="tl">
+          <div class="tl-item"><div class="tl-time">2025.05 – present</div><h4>Autel Robotics</h4><div class="r">Embodied AI Algorithm Researcher</div><p>VLA models for manipulation, RL, embodied agents.</p></div>
+          <div class="tl-item past"><div class="tl-time">2024.07 – 2025.05</div><h4>BYD</h4><div class="r">Robotics Algorithm Engineer</div><p>Robot simulation &amp; control, reinforcement learning.</p></div>
+        </div>
+      </div>
+      <div class="card">
+        <h4 style="margin-bottom:16px">Education</h4>
+        <div class="tl">
+          <div class="tl-item"><div class="tl-time">2021.09 – 2024.06</div><h4>Fudan University</h4><div class="r">M.Eng., Electronic Information</div><p>Embodied AI, RL, convex optimization.</p></div>
+          <div class="tl-item past"><div class="tl-time">2017.09 – 2021.06</div><h4>Sun Yat-sen University</h4><div class="r">B.Eng., Communication Engineering</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= IMRL-VLA ================= -->
+<section class="block" id="imrl">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag"><span class="venue">IEEE T-RL</span> Under review · First author</div>
+      <h2>IMRL-VLA: Interaction-Memory Reinforcement Learning for Vision-Restricted Contact-Rich Manipulation</h2>
+      <p class="sub"><span class="tagline">“See slowly, feel fast.”</span> A frozen VLA plans from vision, while a lightweight residual RL policy uses a 1&nbsp;s command–response–force memory to correct contact at high frequency. Wrist camera only: 80.0% average success on sub-millimeter insertion, staying robust under sudden occlusion and disturbances.</p>
+    </div>
+
+    <figure class="fig" data-full="assets/figures/fig01_overview.png">
+      <img src="assets/figures/fig01_overview.png" alt="IMRL-VLA overview (Fig. 1)" loading="lazy">
+      <figcaption><b>Fig. 1.</b> Overview of IMRL-VLA.</figcaption>
+    </figure>
+
+    <div class="supp">
+      <video controls playsinline preload="metadata" poster="assets/posters/imrl_supp.jpg?v=2" src="assets/videos/imrl_supp.mp4" aria-label="IMRL-VLA supplementary video"></video>
+    </div>
+    <p class="vcap"><b>Supplementary video</b> (with narration): real-robot four-method comparison on three precision tasks, plus sudden wrist-camera occlusion and receptacle-push disturbances.</p>
+  </div>
+</section>
+
+<!-- ================= EAG-VLA ================= -->
+<section class="block alt" id="eag">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag"><span class="venue">IEEE RA-L</span> Under review</div>
+      <h2>EAG-VLA: Enhancing Vision-Language-Action Models via Energy-Adaptive Guidance for Robotic Manipulation</h2>
+      <p class="sub"><span class="tagline">Training-free for the backbone.</span> The fine-tuned VLA stays frozen. A lightweight energy model scores how well actions match tactile (GelSight) or 6-axis force observations, and its gradient steers flow-matching denoising only in the late stage (<span class="mono">t ≤ 0.3</span>). This corrects local contact errors without disturbing the global visual plan.</p>
+    </div>
+
+    <h3 class="sh" style="margin-top:0">Real-world Franka · 6-axis force · π<sub>0.5</sub> vs. EAG-VLA</h3>
+    <div id="eag-real">
+      <p class="note">Three force-sensitive tasks on a real Franka. Average success <b>60.00%</b>: +26.67 pts over π<sub>0.5</sub> and +18.33 pts over ForceVLA.</p>
+      <div class="grid g3">
+        <div><div class="vid rpair contain" data-video="eag_real_btn_pair" data-v="2" data-cap="Self-locking button press. π0.5 (left) under-presses or slips; EAG-VLA (right) uses force feedback to press fully: 85% vs. 50%."><span class="tag ok">85% vs 50% · 2× speed</span></div>
+          <p class="vcap"><b>Self-locking button press</b>, with no under-pressing or slipping.</p></div>
+        <div><div class="vid rpair contain" data-video="eag_real_tube_pair" data-v="2" data-cap="Precision tube insertion on a real Franka: EAG-VLA 30% vs. π0.5 10%."><span class="tag ok">30% vs 10% · 2× speed</span></div>
+          <p class="vcap"><b>Precision tube insertion.</b></p></div>
+        <div><div class="vid rpair contain" data-video="eag_real_asm_pair" data-v="2" data-cap="Tight-tolerance assembly on a real Franka: EAG-VLA 65% vs. π0.5 40%."><span class="tag ok">65% vs 40% · 2× speed</span></div>
+          <p class="vcap"><b>Tight-tolerance assembly.</b></p></div>
+      </div>
+      <div class="tbl-wrap" style="margin-top:18px">
+        <table>
+          <thead><tr><th>Method</th><th>Button press</th><th>Tube insertion</th><th>Assembly</th><th>Average</th></tr></thead>
+          <tbody>
+            <tr><td>Diffusion Policy</td><td class="mono">10</td><td class="mono">0</td><td class="mono">5</td><td class="mono">5.00</td></tr>
+            <tr><td>π<sub>0.5</sub> (vision only)</td><td class="mono">50</td><td class="mono">10</td><td class="mono">40</td><td class="mono">33.33</td></tr>
+            <tr><td>ForceVLA (multimodal fine-tuning)</td><td class="mono">60</td><td class="mono">10</td><td class="mono">55</td><td class="mono">41.67</td></tr>
+            <tr><td><b>EAG-VLA (ours)</b></td><td class="mono ours">85</td><td class="mono ours">30</td><td class="mono ours">65</td><td class="mono ours">60.00<span class="up">+26.67</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="tbl-cap">Real-world success rate (%) on Franka with 6-axis force sensing.</p>
+    </div>
+
+    <h3 class="sh">UniVTAC · visuo-tactile simulation · π<sub>0.5</sub> vs. EAG-VLA</h3>
+    <div id="eag-sim">
+      <p class="note">On the 7 contact-rich tasks of the UniVTAC benchmark, EAG-VLA averages <b>61.42%</b> (+22.13 pts over π<sub>0.5</sub>), ranking first on 5 tasks and second on 2. Without the wrist camera it drops only 5.0 pts, while the baseline drops 17.5 pts.</p>
+      <div class="grid g2">
+        <div><div class="vid rsim contain" data-video="eag_sim_key_pair" data-cap="UniVTAC key extraction with GelSight tactile feedback. Top: π0.5; bottom: EAG-VLA. 85% vs. 50%."><span class="tag ok">85% vs 50%</span></div>
+          <p class="vcap"><b>Key extraction</b> with GelSight tactile guidance.</p></div>
+        <div><div class="vid rsim contain" data-video="eag_sim_tube_pair" data-cap="UniVTAC tactile-guided tube insertion. Top: π0.5; bottom: EAG-VLA."><span class="tag">UniVTAC</span></div>
+          <p class="vcap"><b>Tactile-guided tube insertion.</b></p></div>
+      </div>
+      <figure class="fig" data-full="assets/figures/eag_sim_results.png" style="margin-top:16px">
+        <img src="assets/figures/eag_sim_results.png" alt="Simulation results" loading="lazy">
+        <figcaption><b>UniVTAC benchmark</b>: per-task success rates across 7 visuo-tactile tasks.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EMBODIED AGENT ================= -->
+<section class="block" id="agent">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag"><span class="venue">Industry</span> Autel Robotics · 2026</div>
+      <h2>System 1/2 Embodied Agent &amp; Wheeled Humanoid VLA</h2>
+      <p class="sub">A dual-system stack: an agent harness (System&nbsp;2) plans and schedules, and VLA skills plus whole-body control (System&nbsp;1) execute. I led it end to end, from the data flywheel and VLA optimization to low-latency deployment and long-horizon tasks in multi-floor inspection, air–ground collaboration, transportation and fire-safety scenarios.</p>
+    </div>
+
+    <h3 class="sh" style="margin-top:0">End-to-end long-horizon scenarios</h3>
+    <div class="p3-hero">
+      <div>
+        <div class="vid r916" data-video="p3_multifloor" data-cap="Cross-floor inspection (2F/5F): System 2 planning → VLA elevator button pressing → pedestrian avoidance → VLA door opening → automatic report generation."><span class="tag">2F ↔ 5F · sped up</span></div>
+        <p class="vcap"><b>Multi-floor inspection loop</b> with elevator riding and door opening.</p>
+      </div>
+      <div>
+        <div class="vid r169" data-video="p3_airground" data-cap="Air–ground collaborative inspection: the drone takes off and detects traffic cones blocking a fire lane, sends their coordinates, and the robot navigates there and removes the cones with a VLA skill."><span class="tag">Air–ground collaboration</span></div>
+        <p class="vcap"><b>Air–ground inspection &amp; obstacle clearing.</b> The drone spots cones in the fire lane, then dispatches coordinates. The robot navigates there and a VLA grasp clears them.</p>
+        <div class="flow"><span>Platform task</span><i>→</i><span>System 2 plan</span><i>→</i><span>Navigation</span><i>→</i><span>VLA skills</span><i>→</i><span>Report</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= REAL-TO-SIM ================= -->
+<section class="block alt" id="sim">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag"><span class="venue">Industry</span> Autel Robotics · 2025–2026</div>
+      <h2>Real-to-Sim Inspection Platform: 3DGS + Isaac Sim</h2>
+      <p class="sub">A high-fidelity simulator of real inspection sites. It includes 3D Gaussian Splatting reconstruction with physical collision meshes, articulated interactive assets (elevators, automatic doors), whole-body FK/IK and FAST-LIO SLAM navigation, and a data-synthesis and evaluation pipeline for VLA policies and embodied agents.</p>
+    </div>
+    <div class="grid g2">
+      <div><div class="vid r169" data-video="p4_3dgs" data-cap="LiDAR point-cloud capture with a Lixel L2Pro scanner and photorealistic 3DGS reconstruction of the campus."><span class="tag">3DGS reconstruction</span></div>
+        <p class="vcap"><b>LiDAR capture → 3DGS</b> photorealistic campus reconstruction.</p></div>
+      <div><div class="vid r169" data-video="p4_mesh" data-cap="Collision mesh extraction and physical alignment in Isaac Sim."><span class="tag">Isaac Sim</span></div>
+        <p class="vcap"><b>Collision mesh</b> extraction &amp; physics alignment in Isaac Sim.</p></div>
+      <div><div class="vid r169" data-video="p4_indoor" data-cap="Indoor autonomous navigation, interaction with an articulated elevator and a multi-floor inspection loop in simulation."><span class="tag">Indoor · multi-floor</span></div>
+        <p class="vcap"><b>Indoor navigation</b>, articulated elevator interaction &amp; multi-floor loop.</p></div>
+      <div><div class="vid r169" data-video="p4_outdoor" data-cap="Large-scale outdoor campus: FAST-LIO SLAM mapping, localization and patrol."><span class="tag">Outdoor · FAST-LIO</span></div>
+        <p class="vcap"><b>Outdoor campus</b> SLAM mapping, localization &amp; patrol.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Kaixin Li · <a href="mailto:1615061642@qq.com">1615061642@qq.com</a></div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Media viewer">
+  <button class="lb-close" id="lb-close" aria-label="Close">×</button>
+  <div class="lb-body" id="lb-body"></div>
+  <div class="lb-cap" id="lb-cap"></div>
+</div>
+
+<script>
+/* ---- Fill these in to show the buttons (leave empty to hide) ---- */
+const LINKS = { github: "", scholar: "" };
+for (const [k, url] of Object.entries(LINKS)) {
+  const a = document.querySelector(`[data-link="${k}"]`);
+  if (a && url) { a.href = url; a.target = "_blank"; a.rel = "noopener"; a.hidden = false; }
+}
+
+/* ---- Build muted autoplay previews; play only while on screen ---- */
+const expandIcon = '<span class="expand"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>';
+const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => {
+  for (const e of es) {
+    const v = e.target;
+    if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); }
+    else v.pause();
+  }
+}, { rootMargin: '200px 0px' }) : null;
+
+document.querySelectorAll('.vid[data-video]').forEach(box => {
+  const n = box.dataset.video;
+  const v = document.createElement('video');
+  v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'none';
+  v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
+  v.poster = `assets/posters/${n}.jpg`;
+  v.dataset.src = `assets/videos/${n}.mp4${box.dataset.v ? '?v=' + box.dataset.v : ''}`;
+  v.setAttribute('aria-label', box.dataset.cap || n);
+  box.prepend(v);
+  box.insertAdjacentHTML('beforeend', expandIcon);
+  box.tabIndex = 0;
+  if (io) io.observe(v); else { v.src = v.dataset.src; v.autoplay = true; }
+  const open = () => openLB('video', v.dataset.src, box.dataset.cap, v.currentTime);
+  box.addEventListener('click', open);
+  box.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+});
+
+document.querySelectorAll('.fig[data-full]').forEach(f => {
+  f.tabIndex = 0;
+  const cap = f.querySelector('figcaption');
+  const open = () => openLB('img', f.dataset.full, cap ? cap.textContent : '');
+  f.addEventListener('click', open);
+  f.addEventListener('keydown', e => { if (e.key === 'Enter') open(); });
+});
+
+/* ---- Lightbox ---- */
+const lb = document.getElementById('lb'), lbBody = document.getElementById('lb-body'), lbCap = document.getElementById('lb-cap');
+let lastFocus = null;
+function openLB(type, src, cap, t) {
+  lastFocus = document.activeElement;
+  lbBody.innerHTML = '';
+  let el;
+  if (type === 'video') {
+    el = document.createElement('video');
+    el.src = src; el.controls = true; el.autoplay = true; el.loop = true; el.playsInline = true; el.muted = true;
+    if (t) el.addEventListener('loadedmetadata', () => { el.currentTime = t; }, { once: true });
+  } else { el = document.createElement('img'); el.src = src; el.alt = cap || ''; }
+  lbBody.appendChild(el);
+  lbCap.textContent = cap || '';
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('lb-close').focus();
+}
+function closeLB() {
+  lb.classList.remove('open'); lbBody.innerHTML = ''; document.body.style.overflow = '';
+  if (lastFocus) lastFocus.focus();
+}
+document.getElementById('lb-close').addEventListener('click', closeLB);
+lb.addEventListener('click', e => { if (e.target === lb || e.target === lbBody) closeLB(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('open')) closeLB(); });
+
+
+/* ---- Active nav link ---- */
+const links = [...document.querySelectorAll('.navlinks a')];
+const secs = links.map(a => document.querySelector(a.getAttribute('href')));
+if ('IntersectionObserver' in window) {
+  const navIO = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  secs.forEach(s => s && navIO.observe(s));
+}
+</script>
+</body>
+</html>
