@@ -39,7 +39,7 @@ nav .wrap{display:flex;align-items:center;gap:24px;height:60px}
 .navlinks a:hover,.navlinks a.on{background:var(--accent-l);color:var(--accent-d);text-decoration:none}
 
 /* hero */
-.hero{padding:64px 0 40px}
+.hero{padding:64px 0 56px}
 .hero-grid{display:grid;grid-template-columns:1fr 200px;gap:48px;align-items:start}
 .eyebrow{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--accent);letter-spacing:.04em;text-transform:uppercase}
 .hero h1{font-size:46px;font-weight:800;letter-spacing:-.025em;margin:10px 0 6px}
@@ -136,8 +136,16 @@ td.mono,td .mono{font-family:var(--mono);font-size:13px}
 .panel[hidden]{display:none}
 
 /* project 3 layout */
-.p3-solo{max-width:360px;margin:0 auto;text-align:center}
-.p3-solo .flow{justify-content:center}
+.edu-card{border-top:3px solid var(--accent)}
+.edu-card h4{font-size:17px;margin:4px 0 2px}
+.edu-card .r{font-size:14px;color:var(--accent-d);font-weight:600}
+.edu-card p{margin-top:6px;font-size:14px}
+.agent-row{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:40px;align-items:center}
+.steps{list-style:none;counter-reset:st;margin:6px 0 0;padding:0;display:grid;gap:10px}
+.steps li{counter-increment:st;display:grid;grid-template-columns:30px 1fr;column-gap:12px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.steps li::before{content:counter(st);grid-row:span 2;width:26px;height:26px;border-radius:50%;background:var(--accent-l);color:var(--accent-d);font:700 13px var(--mono);display:grid;place-items:center}
+.steps b{color:var(--ink);font-size:15px}
+.steps span{font-size:14px;color:var(--ink2)}
 .flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;margin:10px 0 0}
 .flow span{background:#fff;border:1px solid var(--line);padding:3px 9px;border-radius:7px;color:var(--ink)}
 .flow i{color:var(--muted);font-style:normal}
@@ -180,6 +188,8 @@ footer{border-top:1px solid var(--line);padding:30px 0 40px;font-size:13px;color
 .lb-close:hover{background:rgba(255,255,255,.18)}
 
 @media (max-width:960px){
+  .agent-row{grid-template-columns:1fr;gap:24px}
+  .agent-row .r916{max-width:320px;margin:0 auto;width:100%}
   .metrics{grid-template-columns:repeat(2,1fr)}
   .g4{grid-template-columns:repeat(2,1fr)}
   .g3{grid-template-columns:1fr}
@@ -251,15 +261,13 @@ footer{border-top:1px solid var(--line);padding:30px 0 40px;font-size:13px;color
   </div>
 </header>
 
-<!-- ================= EXPERIENCE ================= -->
+<!-- ================= EDUCATION ================= -->
 <section class="block alt" id="education">
   <div class="wrap">
     <div class="sec-head"><div class="sec-tag">Background</div><h2>Education</h2></div>
-    <div class="card" style="max-width:640px">
-      <div class="tl">
-        <div class="tl-item"><div class="tl-time">2021.09 – 2024.06</div><h4>Fudan University</h4><div class="r">M.Eng., Electronic Information</div><p>Embodied AI, RL, convex optimization.</p></div>
-        <div class="tl-item past"><div class="tl-time">2017.09 – 2021.06</div><h4>Sun Yat-sen University</h4><div class="r">B.Eng., Communication Engineering</div></div>
-      </div>
+    <div class="grid g2 edu2">
+      <div class="card edu-card"><div class="tl-time">2021.09 – 2024.06</div><h4>Fudan University</h4><div class="r">M.Eng., Electronic Information</div><p>Embodied AI, RL, convex optimization.</p></div>
+      <div class="card edu-card"><div class="tl-time">2017.09 – 2021.06</div><h4>Sun Yat-sen University</h4><div class="r">B.Eng., Communication Engineering</div></div>
     </div>
   </div>
 </section>
@@ -345,11 +353,19 @@ footer{border-top:1px solid var(--line);padding:30px 0 40px;font-size:13px;color
       <p class="sub">A dual-system stack: an agent harness (System&nbsp;2) plans and schedules, and VLA skills plus whole-body control (System&nbsp;1) execute. I led it end to end, from the data flywheel and VLA optimization to low-latency deployment and long-horizon tasks in multi-floor inspection, air–ground collaboration, transportation and fire-safety scenarios.</p>
     </div>
 
-    <h3 class="sh" style="margin-top:0">End-to-end long-horizon scenarios</h3>
-    <div class="p3-solo">
-      <div class="vid r916" data-video="p3_multifloor" data-cap="Cross-floor inspection (2F/5F): System 2 planning → VLA elevator button pressing → pedestrian avoidance → VLA door opening → automatic report generation."><span class="tag">2F ↔ 5F · sped up</span></div>
-      <p class="vcap"><b>Multi-floor inspection loop</b> with elevator riding and door opening.</p>
-      <div class="flow"><span>Platform task</span><i>→</i><span>System 2 plan</span><i>→</i><span>Navigation</span><i>→</i><span>VLA skills</span><i>→</i><span>Report</span></div>
+    <div class="agent-row">
+      <div class="vid r916" data-video="p3_multifloor" data-cap="Cross-floor inspection (2F/5F): System 2 planning → VLA elevator button pressing → pedestrian avoidance → VLA door opening → automatic report generation."></div>
+      <div class="agent-text">
+        <h3 class="sh" style="margin-top:0">Multi-floor autonomous inspection</h3>
+        <p class="note">One natural-language task from the platform starts a full cross-floor loop. System&nbsp;2 decomposes it into sub-goals, and System&nbsp;1 executes them with navigation and VLA manipulation skills on a wheeled humanoid.</p>
+        <ol class="steps">
+          <li><b>Plan</b><span>System 2 parses the 5F / 2F inspection task and schedules sub-goals.</span></li>
+          <li><b>Ride the elevator</b><span>VLA skill calls the elevator, enters the car and presses the floor button.</span></li>
+          <li><b>Navigate</b><span>Long corridor patrol with dynamic pedestrian avoidance.</span></li>
+          <li><b>Open doors</b><span>VLA grasp-and-push door opening to reach target rooms.</span></li>
+          <li><b>Report</b><span>A report agent summarizes the inspection automatically.</span></li>
+        </ol>
+      </div>
     </div>
 
   </div>
