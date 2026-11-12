@@ -136,7 +136,8 @@ td.mono,td .mono{font-family:var(--mono);font-size:13px}
 .panel[hidden]{display:none}
 
 /* project 3 layout */
-.p3-hero{display:grid;grid-template-columns:300px 1fr;gap:20px;align-items:start}
+.p3-solo{max-width:360px;margin:0 auto;text-align:center}
+.p3-solo .flow{justify-content:center}
 .flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;margin:10px 0 0}
 .flow span{background:#fff;border:1px solid var(--line);padding:3px 9px;border-radius:7px;color:var(--ink)}
 .flow i{color:var(--muted);font-style:normal}
@@ -182,8 +183,6 @@ footer{border-top:1px solid var(--line);padding:30px 0 40px;font-size:13px;color
   .metrics{grid-template-columns:repeat(2,1fr)}
   .g4{grid-template-columns:repeat(2,1fr)}
   .g3{grid-template-columns:1fr}
-  .p3-hero{grid-template-columns:1fr}
-  .p3-hero .r916{max-width:320px;margin:0 auto}
 }
 @media (max-width:720px){
   .wrap{padding:0 16px}
@@ -212,7 +211,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 40px;font-size:13px;color
     <a class="brand" href="#top">Kaixin Li</a>
     <div class="navlinks">
       <a href="#about">About</a>
-      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
       <a href="#imrl">IMRL-VLA</a>
       <a href="#eag">EAG-VLA</a>
       <a href="#agent">Embodied Agent</a>
@@ -228,7 +227,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 40px;font-size:13px;color
       <div>
         <div class="eyebrow">Embodied AI · Robot Learning</div>
         <h1>Kaixin Li</h1>
-        <div class="role">Embodied AI Algorithm Researcher · Autel Robotics</div>
+        <div class="role">Embodied AI Algorithm Researcher</div>
         <p class="lead">I received my M.Eng. in Electronic Information from <b>Fudan University</b> (2024), where I worked on embodied intelligence, reinforcement learning and convex optimization, and my B.Eng. in Communication Engineering from <b>Sun Yat-sen University</b> (2021).</p>
         <p class="lead">My research interests lie in <b>robot learning for physical interaction</b>, in particular <b>Vision-Language-Action (VLA) models</b>, <b>reinforcement learning</b> for contact-rich manipulation, <b>visuo-tactile and force</b> perception, and <b>embodied agents</b> that bring these policies to long-horizon real-world tasks.</p>
         <ul class="chips">
@@ -253,23 +252,13 @@ footer{border-top:1px solid var(--line);padding:30px 0 40px;font-size:13px;color
 </header>
 
 <!-- ================= EXPERIENCE ================= -->
-<section class="block alt" id="experience">
+<section class="block alt" id="education">
   <div class="wrap">
-    <div class="sec-head"><div class="sec-tag">Background</div><h2>Experience &amp; Education</h2></div>
-    <div class="grid g2" style="gap:24px;align-items:start">
-      <div class="card">
-        <h4 style="margin-bottom:16px">Experience</h4>
-        <div class="tl">
-          <div class="tl-item"><div class="tl-time">2025.05 – present</div><h4>Autel Robotics</h4><div class="r">Embodied AI Algorithm Researcher</div><p>VLA models for manipulation, RL, embodied agents.</p></div>
-          <div class="tl-item past"><div class="tl-time">2024.07 – 2025.05</div><h4>BYD</h4><div class="r">Robotics Algorithm Engineer</div><p>Robot simulation &amp; control, reinforcement learning.</p></div>
-        </div>
-      </div>
-      <div class="card">
-        <h4 style="margin-bottom:16px">Education</h4>
-        <div class="tl">
-          <div class="tl-item"><div class="tl-time">2021.09 – 2024.06</div><h4>Fudan University</h4><div class="r">M.Eng., Electronic Information</div><p>Embodied AI, RL, convex optimization.</p></div>
-          <div class="tl-item past"><div class="tl-time">2017.09 – 2021.06</div><h4>Sun Yat-sen University</h4><div class="r">B.Eng., Communication Engineering</div></div>
-        </div>
+    <div class="sec-head"><div class="sec-tag">Background</div><h2>Education</h2></div>
+    <div class="card" style="max-width:640px">
+      <div class="tl">
+        <div class="tl-item"><div class="tl-time">2021.09 – 2024.06</div><h4>Fudan University</h4><div class="r">M.Eng., Electronic Information</div><p>Embodied AI, RL, convex optimization.</p></div>
+        <div class="tl-item past"><div class="tl-time">2017.09 – 2021.06</div><h4>Sun Yat-sen University</h4><div class="r">B.Eng., Communication Engineering</div></div>
       </div>
     </div>
   </div>
@@ -351,22 +340,16 @@ footer{border-top:1px solid var(--line);padding:30px 0 40px;font-size:13px;color
 <section class="block" id="agent">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-tag"><span class="venue">Industry</span> Autel Robotics · 2026</div>
+      <div class="sec-tag"><span class="venue">Industry</span> 2026</div>
       <h2>System 1/2 Embodied Agent &amp; Wheeled Humanoid VLA</h2>
       <p class="sub">A dual-system stack: an agent harness (System&nbsp;2) plans and schedules, and VLA skills plus whole-body control (System&nbsp;1) execute. I led it end to end, from the data flywheel and VLA optimization to low-latency deployment and long-horizon tasks in multi-floor inspection, air–ground collaboration, transportation and fire-safety scenarios.</p>
     </div>
 
     <h3 class="sh" style="margin-top:0">End-to-end long-horizon scenarios</h3>
-    <div class="p3-hero">
-      <div>
-        <div class="vid r916" data-video="p3_multifloor" data-cap="Cross-floor inspection (2F/5F): System 2 planning → VLA elevator button pressing → pedestrian avoidance → VLA door opening → automatic report generation."><span class="tag">2F ↔ 5F · sped up</span></div>
-        <p class="vcap"><b>Multi-floor inspection loop</b> with elevator riding and door opening.</p>
-      </div>
-      <div>
-        <div class="vid r169" data-video="p3_airground" data-cap="Air–ground collaborative inspection: the drone takes off and detects traffic cones blocking a fire lane, sends their coordinates, and the robot navigates there and removes the cones with a VLA skill."><span class="tag">Air–ground collaboration</span></div>
-        <p class="vcap"><b>Air–ground inspection &amp; obstacle clearing.</b> The drone spots cones in the fire lane, then dispatches coordinates. The robot navigates there and a VLA grasp clears them.</p>
-        <div class="flow"><span>Platform task</span><i>→</i><span>System 2 plan</span><i>→</i><span>Navigation</span><i>→</i><span>VLA skills</span><i>→</i><span>Report</span></div>
-      </div>
+    <div class="p3-solo">
+      <div class="vid r916" data-video="p3_multifloor" data-cap="Cross-floor inspection (2F/5F): System 2 planning → VLA elevator button pressing → pedestrian avoidance → VLA door opening → automatic report generation."><span class="tag">2F ↔ 5F · sped up</span></div>
+      <p class="vcap"><b>Multi-floor inspection loop</b> with elevator riding and door opening.</p>
+      <div class="flow"><span>Platform task</span><i>→</i><span>System 2 plan</span><i>→</i><span>Navigation</span><i>→</i><span>VLA skills</span><i>→</i><span>Report</span></div>
     </div>
 
   </div>
@@ -376,7 +359,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 40px;font-size:13px;color
 <section class="block alt" id="sim">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-tag"><span class="venue">Industry</span> Autel Robotics · 2025–2026</div>
+      <div class="sec-tag"><span class="venue">Industry</span> 2025–2026</div>
       <h2>Real-to-Sim Inspection Platform: 3DGS + Isaac Sim</h2>
       <p class="sub">A high-fidelity simulator of real inspection sites. It includes 3D Gaussian Splatting reconstruction with physical collision meshes, articulated interactive assets (elevators, automatic doors), whole-body FK/IK and FAST-LIO SLAM navigation, and a data-synthesis and evaluation pipeline for VLA policies and embodied agents.</p>
     </div>
